@@ -1,0 +1,61 @@
+{
+  "name": "feedlint",
+  "version": "1.0.0",
+  "description": "Validate and auto-clean e-commerce product feeds against the 2026 specs of Meta Catalog, Google Merchant Center, and TikTok Catalog.",
+  "keywords": [
+    "product-feed",
+    "feed-validation",
+    "meta-catalog",
+    "google-merchant-center",
+    "tiktok-catalog",
+    "shopify",
+    "woocommerce",
+    "magento",
+    "martech",
+    "cli",
+    "data-cleansing",
+    "advertising",
+    "roas"
+  ],
+  "homepage": "https://github.com/NagaYu/feedlint#readme",
+  "bugs": {
+    "url": "https://github.com/NagaYu/feedlint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NagaYu/feedlint.git"
+  },
+  "license": "MIT",
+  "author": "NagaYu <yn19940713@icloud.com>",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "bin": {
+    "feedlint": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs --target node18 --clean --shims",
+    "dev": "tsup src/index.ts --format cjs --target node18 --watch",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build"
+  },
+  "dependencies": {
+    "colorette": "^2.0.20",
+    "commander": "^12.1.0",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/xml2js": "^0.4.14",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.0"
+  }
+}
