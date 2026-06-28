@@ -1,6 +1,6 @@
 {
   "name": "feedlint",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Validate and auto-clean e-commerce product feeds against the 2026 specs of Meta Catalog, Google Merchant Center, and TikTok Catalog.",
   "keywords": [
     "product-feed",
@@ -45,7 +45,10 @@
     "dev": "tsup src/index.ts --format cjs --target node18 --watch",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run typecheck && npm run build"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {
     "colorette": "^2.0.20",
@@ -56,6 +59,7 @@
     "@types/node": "^20.14.0",
     "@types/xml2js": "^0.4.14",
     "tsup": "^8.1.0",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.5"
   }
 }

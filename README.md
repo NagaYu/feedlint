@@ -8,6 +8,7 @@
 **Meta Catalog**, **Google Merchant Center**, and **TikTok Catalog** — in about ten seconds.
 
 [![npm version](https://img.shields.io/badge/npm-feedlint-cb3837?logo=npm)](https://www.npmjs.com/package/feedlint)
+[![CI](https://github.com/NagaYu/feedlint/actions/workflows/ci.yml/badge.svg)](https://github.com/NagaYu/feedlint/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-MIT-3da639.svg)](#-license)
 [![node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![types](https://img.shields.io/badge/types-TypeScript-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -210,6 +211,9 @@ cd feedlint
 npm install
 
 npm run typecheck   # strict tsc, no emit
+npm run test        # run the vitest suite once
+npm run test:watch  # watch mode
+npm run coverage    # v8 coverage report
 npm run build       # bundle to dist/ with tsup
 npm run dev         # rebuild on change
 node dist/index.js -i sample.json -p meta
@@ -223,6 +227,14 @@ The codebase is intentionally small and strict:
 | `src/rules.ts` | Cleansing primitives + the declarative per-platform rule sets. |
 | `src/engine.ts` | Parse → normalize → apply rules → serialize. |
 | `src/index.ts` | The commander CLI + colorette summary renderer. |
+
+### Tests
+
+The suite (84 tests across `test/`) covers every cleansing primitive, all
+per-platform rules in both autofix and dry-run modes, every input dialect, the
+bounded-concurrency image pool, and full end-to-end `runEngine` passes over
+temp files. CI runs `typecheck → test → build` on Node 18/20/22 for every push
+and pull request.
 
 ---
 

@@ -200,10 +200,22 @@ export function smartTruncate(input: string, max: number): string {
   const budget = max - ellipsis.length;
   const slice = chars.slice(0, budget).join("");
 
-  // Prefer cutting at the last word boundary inside the budget.
-  const lastSpace = slice.lastIndexOf(" ");
-  const trimmed =
-    lastSpace > budget * 0.5 ? slice.slice(0, lastSpace) : slice;
+  // The character in the original immediately after the budget window. When it
+  // is whitespace (or the string ends there), the last word inside `slice` is
+  // complete, so we keep the whole slice. Otherwise the budget falls in the
+  // middle of a word and we back off to the last word boundary — but only if
+  // that boundary is reasonably far in, to avoid throwing away most of a title
+  // when the sole space sits very early.
+  const boundaryChar = chars[budget];
+  const endsOnWordBoundary = boundaryChar === undefined || /\s/u.test(boundaryChar);
+
+  let trimmed: string;
+  if (endsOnWordBoundary) {
+    trimmed = slice;
+  } else {
+    const lastSpace = slice.lastIndexOf(" ");
+    trimmed = lastSpace > budget * 0.5 ? slice.slice(0, lastSpace) : slice;
+  }
 
   return `${trimmed.replace(/[\s.,;:!\-]+$/u, "")}${ellipsis}`;
 }

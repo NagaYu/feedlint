@@ -46,7 +46,7 @@ import { getSpecFor } from "./rules.js";
 /*  Constants                                                                 */
 /* -------------------------------------------------------------------------- */
 
-const VERSION = "1.0.0";
+const VERSION = "1.0.1";
 
 /** Box-drawing characters for the summary panel. */
 const BOX = {
