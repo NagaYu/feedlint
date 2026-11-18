@@ -26,7 +26,7 @@
     "url": "git+https://github.com/NagaYu/feedlint.git"
   },
   "license": "MIT",
-  "author": "NagaYu <yn19940713@icloud.com>",
+  "author": "NagaYu",
   "type": "commonjs",
   "main": "./dist/index.js",
   "bin": {
